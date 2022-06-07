@@ -1,25 +1,36 @@
 var button = document.getElementById('random');
 var clear = document.getElementById('clear');
-var data = '0123456789';
-var random_num = '';
 
 button.addEventListener('click',function(event){
-    var length = parseInt(document.getElementById('length-num').value);
-    var money = document.getElementById('money');
-    if (length >= 1500 && money == usd) {
-        random_num = Math.floor(Math.random() * length);
-        process = random_num.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        }).format(random_num);
+    var num = parseInt(document.getElementById('number').value);
+    var cur = document.getElementById('currency').value;
+    if (cur == "usd") {
+        random_num = Math.floor(Math.random() * num);
+        process = random_num.toLocaleString('en-US', {style:"currency", currency:"USD"});
         document.querySelector('.output').textContent = process;
     }
-    else {
-        alert("ห้ามต่ำกว่า 1500");
+    else if (cur == "krw"){
+        random_num = Math.floor(Math.random() * num);
+        process = random_num.toLocaleString('en-US', {style:"currency", currency:"KRW"});
+        document.querySelector('.output').textContent = process;
+    }
+    else if (cur == 'eur'){
+        random_num = Math.floor(Math.random() * num);
+        process = random_num.toLocaleString('en-US', {style:"currency", currency:"EUR"});
+        document.querySelector('.output').textContent = process;
+    }
+    else if (cur == 'jpy'){
+        random_num = Math.floor(Math.random() * num);
+        process = random_num.toLocaleString('en-US', {style:"currency", currency:"JPY"});
+        document.querySelector('.output').textContent = process;
+    }
+    else{
+        alert("error");
     }
 });
 
 clear.addEventListener('click',function(event){
-    document.getElementById('length-num').value = '';
+    document.getElementById('number').value = '';
     document.querySelector('.output').textContent = '';
+    document.getElementById('currency').value = '';
 });
